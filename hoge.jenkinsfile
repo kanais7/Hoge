@@ -1,13 +1,12 @@
-pipeline
-{
-    agent any
-    stages {
-        stage('hoge') {
-            steps {
-                echo "${JENKINS_HOME}"
-                echo "${WORKSPACE}"
-            }
-        }
+echo env.GIT_COMMIT
+
+node {
+    stage('checkout') {
+        def scmVars = checkout scm
+        echo "aaaa"
+        echo scmVars.GIT_COMMIT
+    }
+    stage('hoge') {
+        echo env.GIT_COMMIT
     }
 }
-
